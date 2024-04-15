@@ -28,8 +28,7 @@
     </div>
     <script type="text/javascript">
         $("document").ready(function () {
-            $("p[id*=para] [lang*=en-]").css("border","3px solid red");
-            
+            $("p[id^='para'][lang^='en-']").css("border", "3px solid red");
         });
     </script>
 
@@ -56,15 +55,21 @@
     </div>
     <script type="text/javascript">
         $("document").ready(function () {
-            
+            $("#create").click(function() {
+                createContent();
+            });
+    
+            $("#changeAll").click(function() {
+                changeAllTheContent();
+            });
         });
+    
         function createContent() {
-            
-
+            $("#createExample").html("<p><b>Hi there!</b></p>");
         }
-
+    
         function changeAllTheContent() {
-            // kód helye
+            $("#createExample").html("<p><b><p>This is a paragraph</p></b></p>");
         }
     </script>
 
@@ -88,7 +93,22 @@
     </style>
     <script type="text/javascript">
         $(function () {
-       
+            $("#evtTarget").mouseenter(function() {
+            $(this).addClass("highlighted");
+        });
+
+        
+        $("#evtTarget").mouseleave(function() {
+            $(this).removeClass("highlighted");
+        });
+
+      
+        $("#evtTarget").click(function(event) {
+            event.stopPropagation(); 
+
+            
+            $(this).removeClass("highlighted").css("background-color", "");
+        });
         });
 
         function highlight(evt) {
@@ -114,20 +134,24 @@
     </div>
     <script type="text/javascript">
         $(function () {
-           $("#fadeout").click(function()
-           {
+            $("#fadeout").click(function() {
                 $("#theDiv").fadeOut();
-           })
-           $("#fadein").click(function()
-           {
+            });
+    
+            $("#fadein").click(function() {
                 $("#theDiv").fadeIn();
-           })
-           $("#fadeout").click(function()
-           {
-                $("#theDiv").fadeTo();
-           })
+            });
+    
+            $("#fadeto3").click(function() {
+                $("#theDiv").fadeTo("slow", 0.5);
+            });
+    
+            $("#fadeup").click(function() {
+                $("#theDiv").fadeTo("slow", 1);
+            });
         });
     </script>
+    
 
     <!-- 5. feladat ------------------------------------------------------>
     <h1>Animating an Element's Properties (8 pont)</h1>
@@ -143,17 +167,21 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $("#all").click(function()
-            {
-                $("#theAnimateDiv").animate(
-                    {
-                        width:"500px",
-                        right:500,
-                        fontSize:"24pt"
-                    }
-                )
-            })
-        
+            $("#all").click(function() {
+                $("#theAnimateDiv").animate({
+                    width: "500px",
+                    right: 500,
+                    fontSize: "24pt"
+                });
+            });
+    
+            $("#origin").click(function() {
+                $("#theAnimateDiv").stop().css({
+                    width: "",
+                    right: "",
+                    fontSize: ""
+                });
+            });
         });
     </script>
     
